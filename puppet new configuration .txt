@@ -77,10 +77,9 @@ mode    => '0644',                                         # file permissions
 content => "This is temporary file", 
 }
 
-//node
-sudo /opt/puppetlabs/bin/puppet agent --test
+or
 
-// server 
+ 
 package {'screen':
 ensure => present,
 }
@@ -99,4 +98,9 @@ ensure => present,
 package {'ant':
 ensure => present,
 }
+
+//node
+sudo /opt/puppetlabs/bin/puppet agent --test
+
+apt list --installed
 
