@@ -1,3 +1,4 @@
+//
 sudo apt-get install ntp ntpdate
 sudo ntpdate -u 0.ubuntu.pool.ntp.org
 
