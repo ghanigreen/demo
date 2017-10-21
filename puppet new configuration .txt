@@ -79,3 +79,24 @@ content => "This is temporary file",
 
 //node
 sudo /opt/puppetlabs/bin/puppet agent --test
+
+// server 
+package {'screen':
+ensure => present,
+}
+package {'git':
+ensure => present,
+}
+package {'wget':
+ensure => present,
+}
+package {'python':
+ensure => present,
+}
+package {'apache2':
+ensure => present,
+}
+package {'ant':
+ensure => present,
+}
+
