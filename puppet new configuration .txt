@@ -20,7 +20,7 @@ Vagrant.configure("2") do |config|
 //server
 
 $sudo vi /etc/hosts
-192.168.0.1  node1
+192.168.0.176  node1
 
 
 sudo  curl -O https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
@@ -33,7 +33,7 @@ sudo apt-get install puppetserver
 
 sudo ufw allow 8140
 
-sudo nano /etc/default/puppetserver
+sudo vi /etc/default/puppetserver
 
 sudo systemctl start puppetserver
 
@@ -43,8 +43,8 @@ sudo systemctl status puppetserver
 //node
 
 
-$sudo vi /etc/hosts
-192.168.0.200 puppet
+sudo vi /etc/hosts
+192.168.0.175 puppet
 
 sudo wget https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
 
@@ -58,22 +58,23 @@ sudo systemctl start puppet
 
 sudo systemctl enable puppet
 
+// puppet server
+
 sudo /opt/puppetlabs/bin/puppet cert list
+sudo /opt/puppetlabs/bin/puppet cert list --all //to view all certificate list
 
-sudo /opt/puppetlabs/bin/puppet cert sign node1.domain.name
-
+sudo /opt/puppetlabs/bin/puppet cert sign node1.domain.name 
+or
 sudo /opt/puppetlabs/bin/puppet cert sign –all
 
 
-// server
-
-vi /etc/puppetlabs/code/environments/production/manifests/site.pp
+sudo vi /etc/puppetlabs/code/environments/production/manifests/site.pp
 
 
-file {'/tmp/example-ip':                                   # resource type file and filename
+file {'/tmp/tempfile':                                   # resource type file and filename
 ensure  => present,                                        # make sure it exists
 mode    => '0644',                                         # file permissions
-content => "The Node IP address is  ${ipaddress_eth0}!\n", # note the ipaddress_eth0 fact
+content => "This is temporary file", 
 }
 
 //node
